@@ -46,24 +46,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
               InfoItem(
                 title: 'Name',
                 content: currentUser.firstName + ' ' + currentUser.lastName,
-                screen: NameScreen()
+                screen: NameScreen(
+                  currentUser: currentUser,
+                  updateInfo: updateInfo,
+                )
               ),
               InfoItem(
                 title: 'Phone',
                 content: currentUser.phoneNumber,
                 screen: PhoneScreen(
                   currentUser: currentUser,
-                  updateInfo: updateInfo)
+                  updateInfo: updateInfo
+                )
               ),
               InfoItem(
                 title: 'Email',
                 content: currentUser.email,
-                screen: EmailScreen()
+                screen: EmailScreen(
+                  currentUser: currentUser,
+                  updateInfo: updateInfo
+                ),
               ),
               InfoItem(
                 title: 'Tell us about yourself',
                 content: currentUser.bio,
-                screen: BioScreen()
+                screen: BioScreen(
+                  currentUser: currentUser,
+                  updateInfo: updateInfo
+                )
               ),
 
             ]

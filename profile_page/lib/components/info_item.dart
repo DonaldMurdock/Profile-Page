@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../screens/name_screen.dart';
-
 class InfoItem extends StatelessWidget {
   const InfoItem({ Key? key, required this.title, required this.content, required this.screen }) : super(key: key);
 
