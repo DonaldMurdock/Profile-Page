@@ -1,13 +1,30 @@
 import 'package:flutter/material.dart';
 
+import '../screens/name_screen.dart';
+
 class InfoItem extends StatelessWidget {
-  const InfoItem({ Key? key, required this.title, required this.content }) : super(key: key);
+  const InfoItem({ Key? key, required this.title, required this.content, required this.screen }) : super(key: key);
 
   final String title;
   final String content;
+  final Widget screen;
 
   @override
   Widget build(BuildContext context) {
+    return GestureDetector(
+      child: info(),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => screen
+          )
+        );
+      }
+    );
+  }
+
+  Widget info() {
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -34,6 +51,8 @@ class InfoItem extends StatelessWidget {
     );
   }
 
+  //info components:
+
   Widget titleText(){
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.0), 
@@ -48,8 +67,8 @@ class InfoItem extends StatelessWidget {
   }
 
   Widget contentText(){
-    return Padding(
-      padding: EdgeInsets.only(bottom: 10.0), 
+    return Padding( 
+      padding: EdgeInsets.only(right: 60.0, bottom: 10.0),
       child: Text(
         content,
         style: TextStyle(

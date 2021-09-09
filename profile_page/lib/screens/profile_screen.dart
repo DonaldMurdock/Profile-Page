@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../components/info_item.dart';
+import '../screens/name_screen.dart';
+import '../screens/phone_screen.dart';
+import '../screens/email_screen.dart';
+import '../screens/bio_screen.dart';
+
 import '../models/user.dart';
 
 
@@ -32,25 +37,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Column(
           children: [
             profileHeader(),
-            CircleAvatar(
-              radius: 100.0,
-              backgroundImage: AssetImage('assets/images/headshot.png'),
-            ),
+            userPhoto(),
             InfoItem(
               title: 'Name',
-              content: currentUser.firstName + ' ' + currentUser.lastName
+              content: currentUser.firstName + ' ' + currentUser.lastName,
+              screen: NameScreen()
             ),
             InfoItem(
               title: 'Phone',
-              content: currentUser.phoneNumber
+              content: currentUser.phoneNumber,
+              screen: PhoneScreen()
             ),
             InfoItem(
               title: 'Email',
-              content: currentUser.email
+              content: currentUser.email,
+              screen: EmailScreen()
             ),
             InfoItem(
               title: 'Tell us about yourself',
-              content: currentUser.bio
+              content: currentUser.bio,
+              screen: BioScreen()
             ),
 
           ]
@@ -60,12 +66,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget profileHeader(){
-    return Text(
+    return Padding(padding: EdgeInsets.only(bottom: 20), child: Text(
       'Edit Profile',
       style: TextStyle(
         fontSize: 30.0,
         fontWeight: FontWeight.bold,
         color: Colors.blue[700]
+      )
+    ));
+  }
+
+  Widget userPhoto(){
+    return CircleAvatar(
+      radius: 105,
+      backgroundColor: Colors.blue[700],
+      child: CircleAvatar(
+        radius: 100.0,
+        backgroundImage: AssetImage('assets/images/headshot.png'),
       )
     );
   }
