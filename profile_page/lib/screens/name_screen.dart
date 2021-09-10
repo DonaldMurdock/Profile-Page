@@ -44,26 +44,30 @@ class NameScreen extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Expanded(child: Padding(
-                        padding: EdgeInsets.only(left: 30.0, right: 5.0, top: 30.0), 
-                        child: InputField(
-                          fieldController: firstNameController,
-                          labelText: 'First Name',
-                          initialText: currentUser.firstName)
-                      )),
-                      Expanded(child: Padding(
-                        padding: EdgeInsets.only(right: 30.0, left: 5.0, top: 30.0), 
-                        child: InputField(
-                          fieldController: lastNameController,
-                          labelText: 'Last Name',
-                          initialText: currentUser.lastName)
-                      )),
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 30.0, right: 5.0, top: 30.0), 
+                          child: InputField(
+                            fieldController: firstNameController,
+                            labelText: 'First Name',
+                            initialText: currentUser.firstName)
+                        )
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 30.0, left: 5.0, top: 30.0), 
+                          child: InputField(
+                            fieldController: lastNameController,
+                            labelText: 'Last Name',
+                            initialText: currentUser.lastName)
+                        )
+                      ),
                     ]
                   )
                 ]
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 100),
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 300),
                 child: UpdateButton(
                   updateFunction: () {
                     updateName(firstNameController, lastNameController, context);
@@ -77,7 +81,7 @@ class NameScreen extends StatelessWidget {
     );
   }
 
-  updateName(TextEditingController firstNameController, TextEditingController lastNameController, BuildContext context) {
+  updateName(firstNameController, lastNameController, context) {
     currentUser.firstName = firstNameController.text;
     currentUser.lastName = lastNameController.text;
     updateInfo();

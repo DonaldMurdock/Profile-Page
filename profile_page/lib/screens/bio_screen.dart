@@ -51,7 +51,7 @@ class BioScreen extends StatelessWidget {
                 ]
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 100),
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 250),
                 child: UpdateButton(
                   updateFunction: () {
                     updateBio(fieldController, context);

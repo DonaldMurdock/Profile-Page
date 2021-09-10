@@ -11,7 +11,9 @@ class UpdateButton extends StatelessWidget {
       width: double.infinity,
       height: 60.0,
       child: ElevatedButton(
-        onPressed: () {updateFunction();}, 
+        onPressed: () {
+          updateFunction();
+        }, 
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(Colors.black)
         ),

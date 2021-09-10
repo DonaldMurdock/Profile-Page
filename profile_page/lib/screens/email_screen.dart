@@ -51,7 +51,7 @@ class EmailScreen extends StatelessWidget {
                 ]
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 100),
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 300),
                 child: UpdateButton(
                   updateFunction: () {
                     updateEmailAddress(fieldController, context);
