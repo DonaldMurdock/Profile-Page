@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../components/info_item.dart';
+import '../screens/photo_screen.dart';
 import '../screens/name_screen.dart';
 import '../screens/phone_screen.dart';
 import '../screens/email_screen.dart';
 import '../screens/bio_screen.dart';
+
 
 import '../models/user.dart';
 
@@ -95,12 +97,50 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget userPhoto(){
-    return CircleAvatar(
-      radius: 105,
-      backgroundColor: Colors.blue[700],
-      child: CircleAvatar(
-        radius: 100.0,
-        backgroundImage: AssetImage('assets/images/headshot.png'),
+    ImageProvider<Object> photo;
+
+    if (currentUser.photo == null){
+      photo = AssetImage('assets/images/headshot.png');
+    }
+    else {
+      photo = FileImage(currentUser.photo!);
+    }
+ 
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => PhotoScreen(
+              currentUser: currentUser,
+              updateInfo: updateInfo
+            )
+          )
+        );
+      },
+      child: Stack(
+        children: [
+          CircleAvatar(
+            radius: 105,
+            backgroundColor: Colors.blue[700],
+            child: CircleAvatar(
+              radius: 100.0,
+              backgroundImage: photo,
+            )
+          ),
+          Positioned(
+            right: 15,
+            top: 15,
+            child: Container(
+              padding: EdgeInsets.all(7.5),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle
+              ),
+              child: Icon(Icons.edit, color: Colors.blue[700])
+            )
+          )
+        ]
       )
     );
   }
