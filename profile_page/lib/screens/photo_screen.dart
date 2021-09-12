@@ -35,25 +35,38 @@ class _PhoneScreenState extends State<PhotoScreen> {
   @override
   Widget build(BuildContext context) {
 
+    //This height is used so we can have a properly sized scrollable column. The height changes 
+    //if the keyboard is visible. 
+    double columnHeight = 
+      MediaQuery.of(context).size.height - 
+      MediaQuery.of(context).padding.top - 
+      AppBar().preferredSize.height - 
+      MediaQuery.of(context).viewInsets.bottom;
+
     return Scaffold(
       appBar: AppBar(
         //Empty invisible Appbar
         backgroundColor: Colors.transparent,
         elevation: 0.0
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: columnHeight), 
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              photoHeader(),
-              photo(image)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  photoHeader(),
+                  photo(image)
+                ]
+              ),
+              updatePhotoButton(),
+              Container() //responsive padding for UpdateButton
             ]
-          ),
-          updatePhotoButton(),
-          Container() //responsive padding for UpdateButton
-        ]
+          )
+        )
       )
     );
   }

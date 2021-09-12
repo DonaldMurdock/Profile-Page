@@ -20,6 +20,7 @@ class InputField extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           fieldLabel(),
+          SizedBox(height: 5.0),
           field()
         ]
       )
