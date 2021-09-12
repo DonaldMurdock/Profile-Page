@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+
+import 'package:image_picker/image_picker.dart';
 
 import '../components/info_item.dart';
 import '../screens/photo_screen.dart';
@@ -91,7 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       style: TextStyle(
         fontSize: 30.0,
         fontWeight: FontWeight.bold,
-        color: Colors.blue[700]
+        color: Colors.blue[800]
       )
     ));
   }
@@ -107,11 +111,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
  
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
+        //Get image from gallery and pass the file to the photo screen
+        File? image = await getImage();
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (BuildContext context) => PhotoScreen(
+              photo: image,
               currentUser: currentUser,
               updateInfo: updateInfo
             )
@@ -122,7 +129,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: [
           CircleAvatar(
             radius: 105,
-            backgroundColor: Colors.blue[700],
+            backgroundColor: Colors.blue[800],
             child: CircleAvatar(
               radius: 100.0,
               backgroundImage: photo,
@@ -137,11 +144,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 color: Colors.white,
                 shape: BoxShape.circle
               ),
-              child: Icon(Icons.edit, color: Colors.blue[700])
+              child: Icon(Icons.edit, color: Colors.blue[800])
             )
           )
         ]
       )
     );
   }
+
+  Future<File> getImage() async {
+    final picker = ImagePicker();
+
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    return File(pickedFile!.path);
+  }
 }
+

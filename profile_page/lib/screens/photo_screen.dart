@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'package:image_picker/image_picker.dart';
-
 import '../components/header_text.dart';
 import '../components/update_button.dart';
 
@@ -11,9 +9,10 @@ import '../models/user.dart';
 
 
 class PhotoScreen extends StatefulWidget {
-  const PhotoScreen({ Key? key, required this.currentUser, required this.updateInfo }) : super(key: key);
+  const PhotoScreen({ Key? key, required this.photo, required this.currentUser, required this.updateInfo }) : super(key: key);
 
   final User currentUser;
+  final File photo;
 
   //This function is taken as a parameter and sets the state on the profile screen
   final void Function() updateInfo;
@@ -23,14 +22,6 @@ class PhotoScreen extends StatefulWidget {
 }
 
 class _PhoneScreenState extends State<PhotoScreen> {
-
-  File? image;
-
-  @override
-  void initState() {
-    image = widget.currentUser.photo;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +50,7 @@ class _PhoneScreenState extends State<PhotoScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   photoHeader(),
-                  photo(image)
+                  photo(photo)
                 ]
               ),
               updatePhotoButton(),
@@ -79,41 +70,14 @@ class _PhoneScreenState extends State<PhotoScreen> {
   }
 
   Widget photo(image){
-    return Stack(
-      children: [
-        AspectRatio(
-          aspectRatio: 1, 
-          child: Padding(
-            padding: EdgeInsets.all(30), 
-            child: image == null 
-              ? Image.asset('assets/images/headshot.png', fit: BoxFit.cover) 
-              : Image.file(image, fit: BoxFit.cover)
-          )
-        ),
-        Padding(padding: EdgeInsets.all(40), child: Container(
-          alignment: Alignment.topRight, 
-          child: Container(
-            decoration: BoxDecoration(color: Colors.white, shape: BoxShape.circle),
-            child: IconButton(
-              icon: Icon(Icons.edit),
-              onPressed: () async {
-                await getImage();
-                setState(() {});
-              }
-            )
-          )
-        ))
-      ]
+    return AspectRatio(
+      aspectRatio: 1, 
+      child: Padding(
+        padding: EdgeInsets.all(30), 
+        child: Image.file(widget.photo, fit: BoxFit.cover)
+      )
     );
   }
-
-  Future<void> getImage() async {
-    final picker = ImagePicker();
-
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    image = File(pickedFile!.path);
-  }
-
 
   Widget updatePhotoButton() {
     return Padding(
@@ -127,7 +91,7 @@ class _PhoneScreenState extends State<PhotoScreen> {
   }
 
   updatePhoto() {
-    widget.currentUser.photo = image;
+    widget.currentUser.photo = widget.photo;
 
     widget.updateInfo();
     Navigator.pop(context);
