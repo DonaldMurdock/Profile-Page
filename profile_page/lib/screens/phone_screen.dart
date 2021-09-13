@@ -103,6 +103,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
 
   updatePhoneNumber(TextEditingController fieldController, BuildContext context) {
     widget.currentUser.phoneNumber = fieldController.text;
+    
     widget.updateInfo();
     Navigator.pop(context);
   }

@@ -11,6 +11,9 @@ class InputField extends StatelessWidget {
   Widget build(BuildContext context) {
     fieldController.text = initialText;
 
+    //Move cursor to end of text
+    fieldController.selection = TextSelection.fromPosition(TextPosition(offset: fieldController.text.length));
+
     return Container(
       padding: EdgeInsets.all(7.5),
       decoration: BoxDecoration(

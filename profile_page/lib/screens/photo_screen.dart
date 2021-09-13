@@ -26,8 +26,7 @@ class _PhoneScreenState extends State<PhotoScreen> {
   @override
   Widget build(BuildContext context) {
 
-    //This height is used so we can have a properly sized scrollable column. The height changes 
-    //if the keyboard is visible. 
+    //This height is used so we can have a properly sized scrollable column.
     double columnHeight = 
       MediaQuery.of(context).size.height - 
       MediaQuery.of(context).padding.top - 

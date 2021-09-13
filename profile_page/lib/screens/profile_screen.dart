@@ -11,7 +11,6 @@ import '../screens/phone_screen.dart';
 import '../screens/email_screen.dart';
 import '../screens/bio_screen.dart';
 
-
 import '../models/user.dart';
 
 
@@ -28,9 +27,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     lastName: 'Taylor',
     phoneNumber: '(555) 555-5555',
     email: 'DonaldMurdockTaylor@gmail.com',
-    bio: 'Hello my name is Don. I would love to work for Approachable Geek! Here is more text so that I can test that my bio text is properly wrapping and not overflowing the screen.'
+    bio: 'Hello my name is Don. I would love to work for Approachable Geek!'
   );
 
+  //This function is passed to other screens
   void updateInfo() {
     setState( () {} );
   }
@@ -43,7 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0.0
       ),
-      body: SingleChildScrollView(        //Need to make scrollable to avoid overflow when returning to screen with keyboard open
+      body: SingleChildScrollView(        
         child: Center(
           child: Column(
             children: [
@@ -81,7 +81,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   updateInfo: updateInfo
                 )
               ),
-
             ]
           )
         )
@@ -90,17 +89,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget profileHeader(){
-    return Padding(padding: EdgeInsets.only(bottom: 20), child: Text(
-      'Edit Profile',
-      style: TextStyle(
-        fontSize: 30.0,
-        fontWeight: FontWeight.bold,
-        color: Colors.blue[800]
+    return Padding(
+      padding: EdgeInsets.only(bottom: 20), 
+      child: Text(
+        'Edit Profile',
+        style: TextStyle(
+          fontSize: 30.0,
+          fontWeight: FontWeight.bold,
+          color: Colors.blue[800]
+        )
       )
-    ));
+    );
   }
 
   Widget userPhoto(){
+    //If no photo has been selected, use default photo
     ImageProvider<Object> photo;
 
     if (currentUser.photo == null){

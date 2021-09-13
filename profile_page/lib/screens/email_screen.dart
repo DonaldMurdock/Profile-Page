@@ -103,6 +103,7 @@ class _EmailScreenState extends State<EmailScreen> {
 
   updateEmailAddress(TextEditingController fieldController, BuildContext context) {
     widget.currentUser.email = fieldController.text;
+    
     widget.updateInfo();
     Navigator.pop(context);
   }

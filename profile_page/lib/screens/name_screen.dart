@@ -127,6 +127,7 @@ class _NameScreenState extends State<NameScreen> {
   updateName(firstNameController, lastNameController, context) {
     widget.currentUser.firstName = firstNameController.text;
     widget.currentUser.lastName = lastNameController.text;
+    
     widget.updateInfo();
     Navigator.pop(context);
   }

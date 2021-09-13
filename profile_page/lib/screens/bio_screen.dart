@@ -91,6 +91,7 @@ class _BioScreenState extends State<BioScreen> {
 
   updateBio(TextEditingController fieldController, BuildContext context) {
     widget.currentUser.bio = fieldController.text;
+    
     widget.updateInfo();
     Navigator.pop(context);
   }
