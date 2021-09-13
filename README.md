@@ -15,3 +15,5 @@ Then type the following at the command prompt:\
 `flutter pub get`\
 `flutter run`
 
+## Screenshots
+<img src="profile_page/screenshots/flutter_01.png?raw=true" width="260"> <img src="profile_page/screenshots/flutter_02.png?raw=true" width="260"> <img src="profile_page/screenshots/flutter_03.png?raw=true" width="260">
